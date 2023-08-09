@@ -58,7 +58,7 @@ def set_args():
     parser.add_argument('--gradient_accumulation_steps', default=8, type=int, help='')
     parser.add_argument('--output_dir', default='output_dir_recEmb/', type=str, help='')
     parser.add_argument('--log_steps', type=int, default=500, help='')
-    parser.add_argument('--max_len', type=int, default=600, help='')
+    parser.add_argument('--max_len', type=int, default=512, help='')
     parser.add_argument('--max_src_len', type=int, default=300, help='')
     parser.add_argument('--local_rank', type=int, default=0, help='')
     parser.add_argument('--lora_r', type=int, default=8, help='')
@@ -188,6 +188,7 @@ def main():
     
     train_data_path = args.train_path
     val_data_path = args.val_path
+    gradient_accumulation_steps = args.gradient_accumulation_steps
     
     if train_data_path.endswith(".json"):  # todo: support jsonl
         print('111111')
@@ -260,8 +261,8 @@ def main():
     output_dir = args.output_dir
     training_args = TrainingArguments(
         output_dir=output_dir,
-        per_device_train_batch_size=2,
-        gradient_accumulation_steps=8,
+        per_device_train_batch_size=4,
+        gradient_accumulation_steps=gradient_accumulation_steps,
         learning_rate=args.learning_rate,
         weight_decay=1e-4,
         warmup_steps=20,
