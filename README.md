@@ -3,7 +3,12 @@ The code of AAAI'24 paper GLRec. [Exploring Large Language Model for Graph Data 
 
 This paper focuses on unveiling the capability of large language models in understanding graph data and leveraging this understanding to enhance recommendations.
 
-Due to business privacy issues, we are currently unable to provide commercial data and require further follow-up in accordance with company policies. The code of GLRec model has been uploaded to this project. The project will be supplemented and optimized continuously.
+Due to business privacy issues, we are currently unable to provide commercial data and require further follow-up in accordance with company policies. The real case of training and testing instruction data can be referred to our paper's case illustration. The code of GLRec model has been uploaded to this project. The project will be supplemented and optimized continuously.
+
+Training the model,
+```
+deepspeed --num_gpus=2 model_GLRec.py --deepspeed configs/ds_zero2.json
+```
 
 Our project is developed based on the projects below, thanks for their contributions.
 
